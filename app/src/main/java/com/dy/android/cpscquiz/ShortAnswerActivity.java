@@ -14,10 +14,12 @@ import com.dy.android.cpscquiz.Objects.ShortAnswerActivityLibrary;
  */
 
 public class ShortAnswerActivity extends Activity{
+    //Text stuff
     private ShortAnswerActivityLibrary library = new ShortAnswerActivityLibrary();
     private int score;
     private int index = 0;
 
+    //View Objects
     private TextView scoreTextView;
     private TextView questionTextView;
     private Button submitButton;
@@ -82,7 +84,7 @@ public class ShortAnswerActivity extends Activity{
     }
 
     // Levenshtein Distance Algorithm
-    public int levenshteinDistance (CharSequence lhs, CharSequence rhs) {
+    private int levenshteinDistance (CharSequence lhs, CharSequence rhs) {
         int len0 = lhs.length() + 1;
         int len1 = rhs.length() + 1;
 

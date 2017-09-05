@@ -16,10 +16,12 @@ import com.dy.android.cpscquiz.Objects.MultipleChoiceLibrary;
 public class MultipleChoiceActivity extends AppCompatActivity implements View.OnClickListener {
     private MultipleChoiceLibrary mMultipleChoiceLibraryLibrary = new MultipleChoiceLibrary();
 
+    //Values
     private int index = 0;
     private int score = 0;
     private String answer;
 
+    //View Objects
     private TextView scoreTextView;
     private TextView questionTextView;
     private Button buttonA;
