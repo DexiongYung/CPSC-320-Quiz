@@ -13,7 +13,7 @@ import com.dy.android.cpscquiz.Objects.MultipleChoiceLibrary;
  * Created by Dylan on 2017-06-27.
  */
 
-public class MultipleChoiceActivity extends AppCompatActivity {
+public class MultipleChoiceActivity extends AppCompatActivity implements View.OnClickListener {
     private MultipleChoiceLibrary mMultipleChoiceLibraryLibrary = new MultipleChoiceLibrary();
 
     private int index = 0;
@@ -27,7 +27,7 @@ public class MultipleChoiceActivity extends AppCompatActivity {
     private Button buttonC;
 
     @Override
-    protected void onCreate(Bundle savedStateInstance){
+    protected void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
         setContentView(R.layout.activity_multiple_choice_quiz);
 
@@ -40,56 +40,18 @@ public class MultipleChoiceActivity extends AppCompatActivity {
         buttonB = (Button) findViewById(R.id.answer_b);
         buttonC = (Button) findViewById(R.id.answer_c);
 
+        //Button listeners
+        buttonA.setOnClickListener(this);
+        buttonB.setOnClickListener(this);
+        buttonC.setOnClickListener(this);
+
         //Set initial question and Answers
         updateQuestion();
         updateAnswers();
         answer = mMultipleChoiceLibraryLibrary.getAnswer(index);
-
-        //Button A listener
-        buttonA.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(buttonA.getText() == answer) {
-                    score++;
-                    updateScore(score);
-                };
-                index++;
-                updateAnswers();
-                updateQuestion();
-            }
-        });
-
-        //Button B listener
-        buttonB.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(buttonB.getText() == answer) {
-                    score++;
-                    updateScore(score);
-                };
-                index++;
-                updateAnswers();
-                updateQuestion();
-            }
-        });
-
-        //Button C listener
-        buttonC.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(buttonC.getText() == answer) {
-                    score++;
-                    updateScore(score);
-                };
-                index++;
-                updateAnswers();
-                updateQuestion();
-            }
-        });
-
     }
 
-    //Sets the question
+    //Set the question
     private void updateQuestion(){
         if(index >= mMultipleChoiceLibraryLibrary.getlength()){
             startShortAnswerActivity();
@@ -127,5 +89,36 @@ public class MultipleChoiceActivity extends AppCompatActivity {
         Intent myIntent = new Intent(this, ShortAnswerActivity.class);
         myIntent.putExtra("ScoreID", score);
         startActivity(myIntent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == buttonA){
+            if(buttonA.getText() == answer) {
+                score++;
+                updateScore(score);
+            };
+            index++;
+            updateAnswers();
+            updateQuestion();
+        }
+        else if ( v == buttonB){
+            if(buttonB.getText() == answer) {
+                score++;
+                updateScore(score);
+            };
+            index++;
+            updateAnswers();
+            updateQuestion();
+        }
+        else{
+            if(buttonC.getText() == answer) {
+                score++;
+                updateScore(score);
+            };
+            index++;
+            updateAnswers();
+            updateQuestion();
+        }
     }
 }

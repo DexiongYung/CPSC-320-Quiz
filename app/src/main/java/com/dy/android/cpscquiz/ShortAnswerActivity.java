@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.dy.android.cpscquiz.Objects.ShortAnswerActivityLibrary;
-
 
 /**
  * Created by Dylan on 2017-06-27.
