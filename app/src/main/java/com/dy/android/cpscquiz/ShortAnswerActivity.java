@@ -13,7 +13,7 @@ import com.dy.android.cpscquiz.Objects.ShortAnswerActivityLibrary;
  * Created by Dylan on 2017-06-27.
  */
 
-public class ShortAnswerActivity extends Activity{
+public class ShortAnswerActivity extends Activity implements View.OnClickListener{
     //Text stuff
     private ShortAnswerActivityLibrary library = new ShortAnswerActivityLibrary();
     private int score;
@@ -45,23 +45,7 @@ public class ShortAnswerActivity extends Activity{
         questionTextView.setText(library.getQuestion(index));
 
         // Button listener
-        submitButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v){
-                CharSequence answer = answerEditText.getText().toString();
-                answerEditText.setText("");
-
-                if(Math.abs(levenshteinDistance(answer, library.getAnswer(index))) < 4) {
-                    score++;
-                    updateScore();
-                }
-
-                index++;
-                updateQuestion();
-
-            }
-        });
+        submitButton.setOnClickListener(this);
     }
 
     // Call end activity
@@ -123,5 +107,21 @@ public class ShortAnswerActivity extends Activity{
 
         // the distance is the cost for transforming all letters in both strings
         return cost[len0 - 1];
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == submitButton){
+            CharSequence answer = answerEditText.getText().toString();
+            answerEditText.setText("");
+
+            if(Math.abs(levenshteinDistance(answer, library.getAnswer(index))) < 6) {
+                score++;
+                updateScore();
+            }
+
+            index++;
+            updateQuestion();
+        }
     }
 }
